@@ -3,8 +3,8 @@ import { useState } from "react";
 import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
-
 function App() {
+  const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
   const [unit, setUnit] = useState("C");
   const [longitude, setLongitude] = useState(22.66667);
   const [latitude, setLatitude] = useState(75.75);
@@ -26,7 +26,7 @@ function App() {
   const getWeather = async () => {
     try {
       const response = await fetch(
-        `http://api.weatherapi.com/v1/current.json?key=b956e34af1aa45118e4110622242007&q=${longitude},${latitude}&aqi=no`
+        `http://api.weatherapi.com/v1/current.json?key={apiKey}&q=${longitude},${latitude}&aqi=no`
       );
       if (!response.ok) {
         throw new Error("Failed to fetch weather");
