@@ -26,7 +26,7 @@ function App() {
   const getWeather = async () => {
     try {
       const response = await fetch(
-        `http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${latitude},${longitude}&aqi=no`
+        `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${latitude},${longitude}&aqi=no`
       );
       if (!response.ok) {
         throw new Error("Failed to fetch weather");
