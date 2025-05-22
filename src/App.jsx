@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 // import SearchIcon from '@mui/icons-material/Search';
 import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
@@ -6,19 +6,19 @@ import SearchIcon from "@mui/icons-material/Search";
 function App() {
   const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
   const [unit, setUnit] = useState("C");
-  const [longitude, setLongitude] = useState(22.66667);
-  const [latitude, setLatitude] = useState(75.75);
+  const [longitude, setLongitude] = useState(75.75);
+  const [latitude, setLatitude] = useState(22.66667);
   const [input, setInput] = useState("");
-  const [city, setCity] = useState();
-  const [region, setRegion] = useState();
-  const [country, setCountry] = useState();
+  const [city, setCity] = useState("");
+  const [region, setRegion] = useState("");
+  const [country, setCountry] = useState("");
   const [tempratureC, setTempratureC] = useState(0);
   const [tempratureF, setTempratureF] = useState(0);
-  const [text, setText] = useState();
+  const [text, setText] = useState("");
   const [humidity, setHumidity] = useState("");
-  const [windSpeed, setWindSpeed] = useState();
-  const [windDirection, setWindDirection] = useState();
-  const [image, setImage] = useState();
+  const [windSpeed, setWindSpeed] = useState("");
+  const [windDirection, setWindDirection] = useState("");
+  const [image, setImage] = useState("");
 
   const getlatlong = () => {
     console.log("Calling getlatlong function: The function is not ready yet");
@@ -26,7 +26,7 @@ function App() {
   const getWeather = async () => {
     try {
       const response = await fetch(
-        `http://api.weatherapi.com/v1/current.json?key=apiKey&q=${longitude},${latitude}&aqi=no`
+        `http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${latitude},${longitude}&aqi=no`
       );
       if (!response.ok) {
         throw new Error("Failed to fetch weather");
@@ -53,7 +53,7 @@ function App() {
     setText(data.current.condition.text);
   };
 
-  setValues();
+  useEffect(()=>{setValues();},[])
 
   return (
     <div className="w-full h-screen">
